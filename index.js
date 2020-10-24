@@ -80,10 +80,8 @@ bot.on("message", async message => {
         return message.channel.send(embed)
             .catch(err => message.reply(`Something went wrong... ${err}`));
     }
-});
-
-bot.on('message', async message =>{
-    if(command === "say") {
+	
+if (command === "say") {
 
         if (!args[0]) return message.channel.send("What should i say?, try `*say <message>`")
         if (message.content.includes("@")) {
