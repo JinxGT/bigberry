@@ -83,7 +83,7 @@ bot.on("message", async message => {
 });
 
 bot.on('message', async message =>{
-    if (command === "say") {
+    if(command === "say") {
 
         if (!args[0]) return message.channel.send("What should i say?, try `*say <message>`")
         if (message.content.includes("@")) {
