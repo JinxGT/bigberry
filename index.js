@@ -82,6 +82,14 @@ bot.on("message", async message => {
     }
 });
 
+bot.on("message", async message => {
+public void onMessageReceived(MessageReceivedEvent event){
+    if(event.getMessage().getContentRaw().startsWith("!!say")){
+        event.getChannel().sendMessage(event.getMessage().getContentRaw().substring(6)).queue();
+        event.getMessage().delete().queue();
+    }
+}
+
 //THIS IS THE COMMANDS
 
 bot.login(process.env.token);
