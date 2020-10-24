@@ -94,6 +94,7 @@ bot.on('message', async message =>{
         message.channel.send(sayMessage).catch(err => message.reply(`Something went wrong... ${err}`));
         return;
     };
+});
 
 //THIS IS THE COMMANDS
 
