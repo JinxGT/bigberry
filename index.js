@@ -82,13 +82,30 @@ bot.on("message", async message => {
     }
 });
 
-bot.on("message", async message => {
-public void onMessageReceived(MessageReceivedEvent event){
-    if(event.getMessage().getContentRaw().startsWith("!!say")){
-        event.getChannel().sendMessage(event.getMessage().getContentRaw().substring(6)).queue();
-        event.getMessage().delete().queue();
+bot.on('message', async message =>{
+    if (message.author.bot) return;
+    if (message.content.startsWith(prefix)) {
+        let args = message.content.substring(prefix.length).split(" ");
+        switch (args[0].toLowerCase()){
+            case 'say': {
+        let sendMessage = message.content.substring(prefix.length +args[0].length+ args[1].length + 2); //2 is accounting for the 2 space between prefix and # and prefix and the main content
+                setTimeout(()=>{message.delete()},5000)
+                let sendChannel = client.channels.cache.get(args[1]); 
+                sendChannel.send(sendMessage)
+                break;
+            }
+        }
     }
-}
+    if (message.content.startsWith(otherPrefix))    {
+        let args = message.content.substring(otherPrefix.length).split(" ");
+        switch (args[0].toLowerCase()){
+            case 'say': {
+        // Do something else
+                break;
+            }
+        }
+    }
+});
 
 //THIS IS THE COMMANDS
 
