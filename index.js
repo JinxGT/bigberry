@@ -83,29 +83,17 @@ bot.on("message", async message => {
 });
 
 bot.on('message', async message =>{
-    if (message.author.bot) return;
-    if (message.content.startsWith(prefix)) {
-        let args = message.content.substring(prefix.length).split(" ");
-        switch (args[0].toLowerCase()){
-            case 'say': {
-        let sendMessage = message.content.substring(prefix.length +args[0].length+ args[1].length + 2); //2 is accounting for the 2 space between prefix and # and prefix and the main content
-                setTimeout(()=>{message.delete()},5000)
-                let sendChannel = client.channels.cache.get(args[1]); 
-                sendChannel.send(sendMessage)
-                break;
-            }
+    if (command === "say") {
+
+        if (!args[0]) return message.channel.send("What should i say?, try `*say <message>`")
+        if (message.content.includes("@")) {
+            return message.reply("Mentions have been disabled to prevent abuse and spam.")
         }
-    }
-    if (message.content.startsWith(otherPrefix))    {
-        let args = message.content.substring(otherPrefix.length).split(" ");
-        switch (args[0].toLowerCase()){
-            case 'say': {
-        // Do something else
-                break;
-            }
-        }
-    }
-});
+        const sayMessage = args.slice(0).join(" ");
+        message.delete().catch(O_o => { });
+        message.channel.send(sayMessage).catch(err => message.reply(`Something went wrong... ${err}`));
+        return;
+    };
 
 //THIS IS THE COMMANDS
 
