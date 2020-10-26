@@ -84,8 +84,7 @@ bot.on("message", async message => {
 if (command === "say") {
 
         if (!args[0]) return message.channel.send("What should i say?, try `*say <message>`")
-        if (message.content.includes("@")) {
-            return message.reply("Mentions have been disabled to prevent abuse and spam.")
+        
         }
         const sayMessage = args.slice(0).join(" ");
         message.delete().catch(O_o => { });
